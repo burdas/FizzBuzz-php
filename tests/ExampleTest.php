@@ -4,45 +4,41 @@ declare(strict_types=1);
 
 namespace Deg540\CleanCodeKata9\Test;
 
-use Deg540\CleanCodeKata9\Example;
+use Deg540\CleanCodeKata9\FizzBuzz;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class ExampleTest extends TestCase
 {
 
-    /**
-     * @test
-     */
-    public function trueAssertion()
+    #[Test]
+    public function isFizz()
     {
-        $example = new Example();
-
-        $integerValue = $example->integerChecker(1);
-
-        $this->assertTrue($integerValue);
+        $this->assertEquals("Fizz", FizzBuzz::generate(3));
+        $this->assertEquals("Fizz", FizzBuzz::generate(6));
+        $this->assertEquals("Fizz", FizzBuzz::generate(9));
     }
 
-    /**
-     * @test
-     */
-    public function falseAssertion()
+    #[Test]
+    public function isBuzz()
     {
-        $example = new Example();
-
-        $integerValue = $example->integerChecker('1');
-
-        $this->assertFalse($integerValue);
+        $this->assertEquals("Buzz", FizzBuzz::generate(5));
+        $this->assertEquals("Buzz", FizzBuzz::generate(10));
+        $this->assertEquals("Buzz", FizzBuzz::generate(20));
     }
 
-    /**
-     * @test
-     */
-    public function equalsAssertion()
+    #[Test]
+    public function isFizzBuzz()
     {
-        $example = new Example();
+        $this->assertEquals("FizzBuzz", FizzBuzz::generate(15));
+        $this->assertEquals("FizzBuzz", FizzBuzz::generate(30));
+        $this->assertEquals("FizzBuzz", FizzBuzz::generate(45));
+    }
 
-        $integerValue = $example->integerChecker(1);
-
-        $this->assertEquals(true, $integerValue);
+    #[Test]
+    public function digitInANumber(){
+        $this->assertTrue(FizzBuzz::includeInDigits(1234, 1));
+        $this->assertTrue(FizzBuzz::includeInDigits(30, 3));
+        $this->assertTrue(FizzBuzz::includeInDigits(15, 5));
     }
 }
